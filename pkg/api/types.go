@@ -17,7 +17,7 @@ limitations under the License.
 package api
 
 import (
-	"k8s.io/api/core/v1"
+	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -49,11 +49,16 @@ type StrategyParameters struct {
 	NodeResourceUtilizationThresholds *NodeResourceUtilizationThresholds
 	NodeAffinityType                  []string
 	PodsHavingTooManyRestarts         PodsHavingTooManyRestarts
+	SecurityPractices                 SecurityPractices
 }
 
 type Percentage float64
 type ResourceThresholds map[v1.ResourceName]Percentage
 
+type SecurityPractices struct {
+	ServiceAccount string
+	RunAsUser      int64
+}
 type NodeResourceUtilizationThresholds struct {
 	Thresholds       ResourceThresholds
 	TargetThresholds ResourceThresholds
